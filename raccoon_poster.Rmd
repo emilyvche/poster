@@ -1,0 +1,172 @@
+---
+title: c
+author:
+  - name: Emily V. Che
+    affil: 1, 2
+    orcid: '0000-0002-0516-6865'
+  - name: Claudia Narvaez-Bravo
+    affil: 2
+  - name:  Eduardo N. Taboada
+    affil: 1  
+affiliation:
+  - num: 1
+    address: Public Health Agency of Canada
+  - num: 2
+    address: Department of Food Sciences, University of Manitoba
+column_numbers: 3
+logoright_name: images/phac_logo.jpeg
+logoleft_name: c
+output: 
+  posterdown::posterdown_html:
+    self_contained: false
+bibliography: bibliography.bib
+primary_colour: "#800000"
+secondary_colour: "#ffffff"
+body_bgcol: "#ffffff"
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(DiagrammeR)
+library(ggplot2)
+
+```
+
+# Background
+
+- *Campylobacter* is an important foodborne pathogen, affecting millions of people worldwide every year [@oh2015high].
+-	*Campylobacter* is capable of colonizing a wide array of humans and animals, including farm animals, wild and domestic animals, and can also be found in the environment (water and soil) [@oh2015high]. 
+-	Raccoons (*Procyon lotor*) have a wide range of habitats, including urban and rural areas, in addition to natural environments. 
+-	Raccoons’ potential for movement between different types of habitats make them ideal subjects for investigating the role that wildlife may play in the transmission of *Campylobacter*. [@mutschall2020campylobacter]
+- Whole Genome Sequencing (WGS) provides much higher resolution for comparison of genetic similarity between strains, improving on comparisons based on Comparative Genomic Fingerprinting.
+
+
+## Purpose
+
+- Identify trends amongst the Southern Ontario raccoon *Campylobacter* population
+- Utility of WGS for investigating trends compared to Comparative Genomic Fingerprinting 
+
+
+# Methods
+
+Raccoon trapping occurred during the spring and summer seasons of May 2011 to November 2013 on swine farm and conservation areas near Guelph and Cambridge in Southern Ontario, Canada. Fecal samples were obtained and processed according to \@ref(fig:methodFlowchart). Data cleaning and data generation are described in \@ref(fig:methodflow2). 
+
+```{r methodFlowchart, out.width= '95%', fig.align='center', fig.cap="foo"}
+grViz("digraph flowchart {
+      node [fontname = Helvectica, shape = rectangle]
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+    
+      
+      #edge definitions with the node
+      tab1 -> tab2 -> tab3;
+      }
+
+      [1]: 'Raccoons (n= 1096) live-trapped and fecal samples obtained'
+      [2]: 'Campylobacter species isolated using passive membrane filtration\\nand the species identity confirmed with multiplex PCR.'
+      [3]: 'CGF performed on all Campylobacter isolates to\\nobtain binary fingerpints, which were assigned a subtype.'
+      
+      ")
+```
+
+
+```{r methodflow2, out.width= '95%', fig.align='center', fig.cap= 'foo'}
+grViz("digraph flowchart {
+                 node [fontname = Helvectica, shape = rectangle,
+                 fontsize = 30]
+                 tab1 [label = '@@1']
+                 tab2 [label = '@@2']
+                 tab3 [label = '@@3']
+                 tab4 [label = '@@4']
+                 tab5 [label = '@@5']
+                 tab6 [label = '@@6']
+                 tab7 [label = '@@7']
+                 tab8 [label = '@@8']
+                 tab9 [label = '@@9']
+                 
+                 
+                 tab1 -> tab9;
+                 tab9 -> tab4;
+                 tab9 -> tab2 ->  tab6 -> tab8 -> tab3 -> tab5;
+                 tab6 -> tab7
+}
+
+[1]: 'Isolates (n=895) sequenced on NextSeq platform. \\nGenomes assembled.'
+[2]: 'Genomes (614) with complete allele calls across all loci.\\nLoci (685) with complete alleles across all genomes.'
+[3]: 'Pairwise genome comparisons\\nto calculate genetic similarity\\nusing GrapeTree.'
+[4]: 'Genomes and loci with missing,\\n truncated, or short alleles discarded.'
+[5]: 'Distance matrix'
+[6]: 'CGF profiles compared with eCGF'
+[7]: 'Mismatches discarded.'
+[8]: 'Postive match between CGF and eCGF\\n(n=589).'
+[9]: 'cgMLST allele calls.'
+")
+```
+
+
+# Results
+
+Include distance matrix 
+
+
+
+![Tree](images/sameCGF.svg)
+Phlogenetic tree based on cgMLST alleles. Isolates highlighted with the same colour belong to the same CGF subtype.  
+
+
+
+```{r SimvsCluster, out.width= '80%', fig.align= 'center', fig.cap= 'Genetic Similarity vs CGF Cluster'}
+simvstime <- read.csv("data/distance_dayst.csv", header = TRUE)
+
+ggplot(simvstime,
+       aes(x = reorder(Cluster, -AverageDistance),
+           y = AverageDistance)) +
+  geom_bar(stat = "identity", color = "black", 
+           width = 1, fill = "#008080") +
+  labs(x = "CGF Cluster Identity",
+       y = "Average Distance") +
+  theme_bw() +
+  theme(axis.text.x = element_blank())
+
+```
+The average distance of genetic similarity by CGf Cluster Identity. CGF clusters had 0 allele differences, based on 40 accessory genes. Greater average distance represents greater genetic disimiarlity. Some clusters had great genetic variability whereas other clusters were genetically highly similar. Despite belonging to the same cluster, genetic similarity could be highly dissimilar, which would not be detected based on cluster data alone. 
+
+
+```{r SimvsTime, out.width= '80%', fig.align='center', fig.cap= 'Genetic similarity by standard deviation of the average running day for CGF clusters'}
+simvstime <- read.csv("data/distance_dayst.csv", header = TRUE)
+
+ggplot(simvstime,
+       aes(x = Day.STDev,
+           y = AverageDistance)) +
+  geom_point(aes(size = Obs),
+             alpha = 0.8,
+             stroke = 1,
+             shape = 1) +
+  labs(x = "Standard Deviation of Time",
+       y = "Average Distance",
+       size = "Observations") +
+  theme_classic()
+
+
+```
+
+Low average distance indicates high genetic similarity, with 0 indicating complete genomic similarity. Clusters that had a substantial number of genome pair observations that had both low average distance and standard deviations of time are considered to be outbreaks of *C. jejuni* within the raccoon population. One such example, cluster 928, which had 1560 genome pair observations, has an average distance of 0.34 and a standard deviation of 21 days. Cluster 928 was highly genetically similar while all observations occurred within a month. Other clusters with large observations that have low average distance, but high standard deviations of time are considered to be circulating within the population. WGS provides better resolution for contextualizing outbreaks vs circulating strains. 
+
+# Next Steps
+
+
+
+# Conclusion
+
+
+# Acknowledgements
+
+Financial support for this work was provided through Genome Alberta's Applied Agricultural Genomics Program. 
+
+```{r, include=FALSE}
+knitr::write_bib(c('knitr','rmarkdown','posterdown','pagedown'), 'packages.bib')
+```
+
+# References
