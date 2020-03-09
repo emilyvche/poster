@@ -111,9 +111,12 @@ grViz("digraph flowchart {
 Include distance matrix 
 
 
+```{r Tree, echo=FALSE, out.width= '100%'}
+knitr::include_graphics('./images/sameCGF.png')
 
-![Tree](images/sameCGF.svg)
-Phlogenetic tree based on cgMLST alleles. Isolates highlighted with the same colour belong to the same CGF subtype.  
+```
+
+Tree based on cgMLST alleles. Isolates highlighted with the same colour belong to the same CGF subtype.  
 
 
 
