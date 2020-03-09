@@ -13,7 +13,7 @@ affiliation:
     address: Public Health Agency of Canada
   - num: 2
     address: Department of Food Sciences, University of Manitoba
-column_numbers: 3
+column_numbers: 4
 logoright_name: images/phac_logo.jpeg
 logoleft_name: c
 output: 
@@ -30,6 +30,8 @@ body_bgcol: "#ffffff"
 knitr::opts_chunk$set(echo = FALSE)
 library(DiagrammeR)
 library(ggplot2)
+library(gplots)
+library(viridis)
 
 ```
 
@@ -119,6 +121,25 @@ knitr::include_graphics('./images/sameCGF.png')
 Tree based on cgMLST alleles. Isolates highlighted with the same colour belong to the same CGF subtype.  
 
 
+```{r distance_heatmap, out.width='80%', fig.align='center', fig.cap= "Distance Matrix"}
+distancemat <- as.matrix(read.csv("data/Genomes_A_DM.csv", row.names=1, header = TRUE))
+
+heatmap.2(distancemat,
+          distfun = function(x) {as.dist(x)},
+          symm=TRUE,
+          tracecol = NA,
+          revC=TRUE,
+          col = viridis::inferno,
+          denscol = 'black',
+          labRow = FALSE,
+          labCol = FALSE,
+          density.info = 'density',
+          key.title = NA,
+          key.ylab = NA,
+          key.xlab = "cgMLST Distance",
+          #key.ytickfun = function(x) {list(NA)}
+          )
+```
 
 ```{r SimvsCluster, out.width= '80%', fig.align= 'center', fig.cap= 'Genetic Similarity vs CGF Cluster'}
 simvstime <- read.csv("data/distance_dayst.csv", header = TRUE)
