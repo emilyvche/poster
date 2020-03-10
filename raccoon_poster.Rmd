@@ -41,7 +41,7 @@ library(viridis)
 -	*Campylobacter* is capable of colonizing a wide array of humans and animals, including farm animals, wild and domestic animals, and can also be found in the environment (water and soil) [@oh2015high]. 
 -	Raccoons (*Procyon lotor*) have a wide range of habitats, including urban and rural areas, in addition to natural environments. 
 -	Raccoons’ potential for movement between different types of habitats make them ideal subjects for investigating the role that wildlife may play in the transmission of *Campylobacter*. [@mutschall2020campylobacter]
-- Previous analyses of the raccoon dataset based on presence/absence of 40 accessory genes with Comparative Genomic Fingerprinting (CGF). 
+- Previous analyses conducted on this raccoon dataset was based on presence/absence of 40 accessory genes with Comparative Genomic Fingerprinting (CGF). 
 
 
 ## Purpose
@@ -65,8 +65,8 @@ grViz("digraph flowchart {
       }
 
       [1]: 'Raccoons (n= 1096) live-trapped and fecal samples obtained'
-      [2]: 'Campylobacter species isolated using passive membrane filtration\\nand the species identity confirmed with multiplex PCR.'
-      [3]: 'CGF performed on all Campylobacter isolates to\\nobtain binary fingerpints, which were assigned a subtype.'
+      [2]: 'Campylobacter isolated\\nand the species identity confirmed with PCR.'
+      [3]: 'CGF PCR performed on all Campylobacter isolates to\\nobtain binary fingerpints, which were assigned a subtype.'
       
       ")
 ```
@@ -109,7 +109,7 @@ grViz("digraph flowchart {
 # Results
 
 
-```{r distance_heatmap, out.width='80%', fig.align='center', fig.cap= 'Heatmap of distance matrix for pairwise comparisons of genomes.'}
+```{r distance_heatmap, out.width='80%', fig.align='center', fig.cap= 'Heatmap of distance matrix for pairwise comparisons'}
 distancemat <- as.matrix(read.csv("data/Genomes_A_DM.csv", row.names=1, header = TRUE))
 
 heatmap.2(distancemat,
@@ -190,10 +190,6 @@ Average genetic distance by standard deviation of time. Low average distance ind
 Ultimately, this dataset will be used to develop approaches applicable to human surveillance of *Campylobacter*.
 
 # Next Steps
-
-
-
-There are many potential analyses to be conducted on this dataset. A few interesting analyses may be to: 
 
 - What constitutes a different strain, if isolates are obtained from the same animal at the same time and are genetically similar
 - Survival time of a strain within a raccoon 
