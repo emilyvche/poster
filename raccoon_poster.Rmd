@@ -1,5 +1,5 @@
 ---
-title: Exploratory analysis of *Campylobacter* in an Ontario raccoon population with Whole Genome Sequencing 
+title: Exploratory genomic analysis of *Campylobacter* in a wild Ontario raccoon population 
 author:
   - name: Emily V. Che
     affil: 1, 2
@@ -47,11 +47,11 @@ library(viridis)
 
 ## Purpose
 
-- Use whole genome sequencing (WGS) data with cgMLST to investigate genetic similarities between *Campylobacter* isolates from a raccoon population. 
+- Use whole genome sequencing (WGS) data with cgMLST to investigate genetic similarities between *Campylobacter* isolates from a wild raccoon population. 
 
 # Methods
 
-Raccoon trapping occurred during the spring and summer seasons of May 2011 to November 2013 on swine farms and conservation areas near Guelph and Cambridge in Southern Ontario, Canada. Fecal samples were obtained and processed according to Figure \@ref(fig:methodFlowchart). Data cleaning and data generation are described in Figure \@ref(fig:methodflow2). 
+Wild raccoon trapping occurred during the spring and summer seasons of May 2011 to November 2013 on swine farms and conservation areas near Guelph and Cambridge in Southern Ontario, Canada. Fecal samples were obtained and processed according to Figure \@ref(fig:methodFlowchart). Data cleaning and data generation are described in Figure \@ref(fig:methodflow2). 
 
 ```{r methodFlowchart, out.width= '95%', fig.align='center', fig.cap="foo"}
 grViz("digraph flowchart {
@@ -66,8 +66,8 @@ grViz("digraph flowchart {
       }
 
       [1]: 'Raccoons (n= 1096) live-trapped and fecal samples obtained'
-      [2]: 'Campylobacter isolated\\nand the species identity confirmed with PCR.'
-      [3]: 'CGF PCR performed on all Campylobacter isolates to\\nobtain binary fingerpints, which were assigned a subtype.'
+      [2]: 'Campylobacter isolated\\nand the species identity confirmed with PCR'
+      [3]: 'CGF PCR performed on all Campylobacter isolates to\\nobtain binary fingerpints, which were assigned a subtype'
       
       ")
 ```
@@ -94,15 +94,15 @@ grViz("digraph flowchart {
                  tab6 -> tab7
 }
 
-[1]: '895 isolates sequenced on NextSeq platform.'
-[2]: 'Genomes (614) with complete allele calls across all loci.\\nLoci (685) with complete alleles across all genomes.'
-[3]: 'Pairwise genome comparisons\\nto calculate genetic similarity\\nusing GrapeTree.'
-[4]: 'Genomes and loci with missing,\\n truncated, or short alleles discarded.'
+[1]: '895 isolates sequenced on NextSeq platform'
+[2]: 'Genomes (614) with complete allele calls across all loci.\\nLoci (685) with complete alleles across all genomes'
+[3]: 'Pairwise genome comparisons\\nto calculate genetic similarity\\nusing GrapeTree'
+[4]: 'Genomes and loci with missing,\\n truncated, or short alleles discarded'
 [5]: 'Distance matrix'
 [6]: 'CGF profiles compared with eCGF'
-[7]: 'Mismatches discarded.'
-[8]: 'Postive match between CGF and eCGF\\n(n=589).'
-[9]: 'cgMLST allele calls.'
+[7]: 'Mismatches discarded'
+[8]: 'Postive match between CGF and eCGF\\n(n=589)'
+[9]: 'cgMLST allele calls'
 ")
 ```
 
