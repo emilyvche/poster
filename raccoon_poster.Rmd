@@ -41,7 +41,8 @@ library(viridis)
 -	*Campylobacter* is capable of colonizing a wide array of humans and animals, including farm animals, wild and domestic animals, and can also be found in the environment (water and soil) [@oh2015high]. 
 -	Raccoons (*Procyon lotor*) have a wide range of habitats, including urban and rural areas, in addition to natural environments. 
 -	Raccoons’ potential for movement between different types of habitats make them ideal subjects for investigating the role that wildlife may play in the transmission of *Campylobacter*. [@mutschall2020campylobacter]
-- Previous analyses conducted on this raccoon dataset was based on presence/absence of 40 accessory genes with Comparative Genomic Fingerprinting (CGF). 
+- Previous analyses conducted on this raccoon dataset was based on presence/absence of 40 accessory genes with Comparative Genomic Fingerprinting (CGF) [@mutschall2020campylobacter]. 
+- Core Genome Multilocus Sequence Typing (cgMLST) measures inter-genomic distance based on allelic profiles of *Campylobacter* core genome. 
 
 
 ## Purpose
@@ -109,7 +110,7 @@ grViz("digraph flowchart {
 # Results
 
 
-```{r distance_heatmap, out.width='80%', fig.align='center', fig.cap= 'Heatmap of distance matrix for pairwise comparisons'}
+```{r distanceheatmap, out.width='80%', fig.align='center', fig.cap= 'Heatmap of distance matrix for pairwise comparisons'}
 distancemat <- as.matrix(read.csv("data/Genomes_A_DM.csv", row.names=1, header = TRUE))
 
 heatmap.2(distancemat,
@@ -191,8 +192,9 @@ Ultimately, this dataset will be used to develop approaches applicable to human 
 
 # Next Steps
 
-- What constitutes a different strain, if isolates are obtained from the same animal at the same time and are genetically similar
-- Survival time of a strain within a raccoon 
+
+- Determine identical strains in the context of this dataset by determining thresholds (isolates are obtained from the same animal at the same time and are genetically similar)
+- Analyze the survival time of a strain within a raccoon to determine if the strain is transient or being harboured
  
 
 # Acknowledgements
