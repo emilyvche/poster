@@ -41,7 +41,7 @@ library(viridis)
 -	Raccoons (*Procyon lotor*) have a wide range of habitats, including urban and rural areas, in addition to natural environments. 
 -	Raccoons’ potential for movement between different types of habitats make them ideal subjects for investigating the role that wildlife may play in the transmission of *Campylobacter*. [@mutschall2020campylobacter]
 - Previous analyses conducted on this raccoon dataset was based on presence/absence of 40 accessory genes with Comparative Genomic Fingerprinting (CGF) [@mutschall2020campylobacter]. 
-- Core Genome Multilocus Sequence Typing (cgMLST) measures inter-genomic distance based on allelic profiles of *Campylobacter* core genome. 
+- Core Genome Multilocus Sequence Typing (cgMLST) measures inter-genomic distance based on allelic profiles of *Campylobacter* core genome [@barker2018principles]. 
 
 
 ## Purpose
@@ -50,9 +50,9 @@ library(viridis)
 
 # Methods
 
-Wild raccoon trapping occurred during the spring and summer seasons of May 2011 to November 2013 on swine farms and conservation areas near Guelph and Cambridge in Southern Ontario, Canada. Fecal samples were obtained and processed according to Figure \@ref(fig:methodFlowchart). Data cleaning and data generation are described in Figure \@ref(fig:methodflow2). 
+Wild raccoon trapping occurred during the spring and summer seasons of May 2011 to November 2013 on swine farms and conservation areas near Guelph and Cambridge in Southern Ontario, Canada. Fecal samples were obtained and processed according to Figure \@ref(fig:methodFlowchart) [@jokinen2012enhanced]. Data cleaning and data generation are described in Figure \@ref(fig:methodflow2). 
 
-```{r methodFlowchart, out.width= '95%', fig.align='center', fig.cap="Workflow of *Campylobacter* isolation and species confirmation"}
+```{r methodFlowchart, out.height = '95%', fig.align='center', fig.cap="Workflow of *Campylobacter* isolation and species confirmation"}
 grViz("digraph flowchart {
       node [fontname = Helvectica, shape = rectangle]
       tab1 [label = '@@1']
@@ -72,10 +72,10 @@ grViz("digraph flowchart {
 ```
 
 
-```{r methodflow2, out.width= '95%', fig.align='center', fig.cap= 'Workflow of data generation and cleaning'}
+```{r methodflow2, out.width='100%', out.height= '150%', fig.align='center', fig.cap= 'Workflow of data generation and cleaning'}
 grViz("digraph flowchart {
                  node [fontname = Helvectica, shape = rectangle,
-                 fontsize = 30]
+                 fontsize = 36]
                  tab1 [label = '@@1']
                  tab2 [label = '@@2']
                  tab3 [label = '@@3']
@@ -109,7 +109,7 @@ grViz("digraph flowchart {
 # Results
 
 
-```{r distanceheatmap, out.width='80%', fig.align='center', fig.cap= 'Heatmap of distance matrix for pairwise comparisons'}
+```{r distanceheatmap, out.width='95%', fig.align='center', fig.cap= 'Heatmap of distance matrix for pairwise comparisons'}
 distancemat <- as.matrix(read.csv("data/Genomes_A_DM.csv", row.names=1, header = TRUE))
 
 heatmap.2(distancemat,
@@ -199,10 +199,10 @@ Ultimately, this dataset will be used to develop approaches applicable to human 
 
 # Acknowledgements
 
-Financial support for this work was provided through Genome Alberta's Applied Agricultural Genomics Program. 
+Financial support for this work was provided through Genome Alberta's Applied Agricultural Genomics Program and the Canadian Wildlife Health Co-operative. 
 
-```{r, include=FALSE}
-knitr::write_bib(c('knitr','rmarkdown','posterdown','pagedown'), 'packages.bib')
-```
+We would also like thank Dillon Barker for bioinformatics support during this project.
 
 # References
+
+
