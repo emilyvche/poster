@@ -3,7 +3,6 @@ title: Exploratory genomic analysis of *Campylobacter* in a wild raccoon populat
 author:
   - name: Emily V. Che
     affil: 1, 2
-    orcid: '0000-0002-0516-6865'
   - name: Claudia Narvaez-Bravo
     affil: 2
   - name:  Eduardo N. Taboada
@@ -20,9 +19,9 @@ output:
   posterdown::posterdown_html:
     self_contained: false
 bibliography: bibliography.bib
-primary_colour: "#800000"
-secondary_colour: "#ffffff"
-body_bgcol: "#ffffff"
+primary_colour: rgb(128, 0 0)
+secondary_colour: rgb(255, 255, 255)
+body_bgcol: rgb(255, 255, 255)
 
 ---
 
@@ -133,14 +132,14 @@ heatmap.2(distancemat,
 The heatmap shows degrees of genetic relatedness between genome pairs. Genetically similar isolates formed discrete clusters. 
 
 
-```{r Tree, echo=FALSE, out.width= '100%', fig.cap= 'Dendogram of cgMLST alleles'}
-knitr::include_graphics('./images/sameCGF.png')
+```{r Tree, echo=FALSE, out.width= '100%', fig.cap= 'Dendogram of cgMLST alleles, each colour represents a CGF subtype'}
+knitr::include_graphics('./images/updated_tree_cgf.png')
 
 ```
-CGF subtypes projected onto cgMLST dendogram. Isolates highlighted with the same colour belong to the same CGF subtype. In general, isolates with the same CGF subtype clustered together. 
+In general, isolates with the same CGF subtype clustered together. 
 
 
-```{r SimvsCluster, out.width= '80%', fig.align= 'center', fig.cap= 'Genetic Similarity vs CGF Cluster'}
+```{r SimvsCluster, out.width= '80%', fig.align= 'center', fig.cap= 'Average Genetic Similarity vs CGF Cluster Identity. Individual bar represents a CGF cluster. Increasing average distance represents increasing genetic disimilarity. CGF cluster was based on a threshold of 0 presence/absence differences of 40 accessory genes. '}
 simvstime <- read.csv("data/distance_dayst.csv", header = TRUE)
 
 ggplot(simvstime,
@@ -156,10 +155,11 @@ ggplot(simvstime,
 #38 CGF clusters
 
 ```
-Average distance of genetic similarity by CGf Cluster Identity. Greater average distance represents increasing genetic disimiarlity. CGF clusters had 0 differences, based on 40 accessory genes. Some CGF clusters had great genetic variability whereas other clusters were highly similar or near identical. Despite belonging to the same CGF cluster, genetic similarity could be highly variable (6 subtypes with >50 allele differences), which would not be detected based on CGF cluster data alone. 
+
+Some CGF clusters had great genetic variability whereas other clusters were highly similar or near identical. Despite belonging to the same CGF cluster, genetic similarity could be highly variable (6 subtypes had >50 allele differences), which would not be detected based on CGF cluster data alone. 
 
 
-```{r SimvsTime, out.width= '80%', fig.align='center', fig.cap= 'Genetic similarity by standard deviation of the average running day for CGF clusters'}
+```{r SimvsTime, out.width= '80%', fig.align='center', fig.cap= 'Average genetic similarity by standard deviation of the average running day for CGF clusters. Low average distance indicates high genetic similarity, with 0 indicating identical genetic similarity. Low standard deviation of time indicates a smaller window of time that  '}
 simvstime <- read.csv("data/distance_dayst.csv", header = TRUE)
 
 ggplot(simvstime,
@@ -177,7 +177,7 @@ ggplot(simvstime,
 
 ```
 
-Average genetic distance by standard deviation of time. Low average distance indicates high genetic similarity, with 0 indicating complete genomic similarity. Low standard deviation of time indicates a smaller window of time that isolates were obtained, with 0 being the same day. CGF Clusters with a substantial number of genome pair observations that had both low average distance and standard deviations of time may be considered outbreaks of *C. jejuni* within the raccoon population. Clusters with large observations and low average distance, but high standard deviations of time are considered to be circulating within the population. 
+CGF clusters containing a substantial number of genomes that had both low average distance and standard deviations of time may be considered outbreaks of *C. jejuni* within the raccoon population. Clusters with both large observations and low average distance, but high standard deviations of time may represent subtypes that are circulating within the wild raccoon population. 
 
 
 # Conclusion
