@@ -1,5 +1,5 @@
 ---
-title: c
+title: Exploratory analysis of *Campylobacter* in an Ontario raccoon population with Whole Genome Sequencing 
 author:
   - name: Emily V. Che
     affil: 1, 2
@@ -15,7 +15,7 @@ affiliation:
     address: Department of Food Sciences, University of Manitoba
 column_numbers: 4
 logoright_name: images/phac_logo.jpeg
-logoleft_name: c
+logoleft_name: images/uofm_logo.jpeg
 output: 
   posterdown::posterdown_html:
     self_contained: false
@@ -41,18 +41,16 @@ library(viridis)
 -	*Campylobacter* is capable of colonizing a wide array of humans and animals, including farm animals, wild and domestic animals, and can also be found in the environment (water and soil) [@oh2015high]. 
 -	Raccoons (*Procyon lotor*) have a wide range of habitats, including urban and rural areas, in addition to natural environments. 
 -	Raccoons’ potential for movement between different types of habitats make them ideal subjects for investigating the role that wildlife may play in the transmission of *Campylobacter*. [@mutschall2020campylobacter]
-- Whole Genome Sequencing (WGS) provides much higher resolution for comparison of genetic similarity between strains, improving on comparisons based on Comparative Genomic Fingerprinting.
+- Previous analyses of the raccoon dataset based on presence/absence of 40 accessory genes with Comparative Genomic Fingerprinting (CGF). 
 
 
 ## Purpose
 
-- Identify trends amongst the Southern Ontario raccoon *Campylobacter* population
-- Utility of WGS for investigating trends compared to Comparative Genomic Fingerprinting 
-
+- Use whole genome sequencing (WGS) data with cgMLST to investigate genetic similarities between *Campylobacter* isolates from a raccoon population. 
 
 # Methods
 
-Raccoon trapping occurred during the spring and summer seasons of May 2011 to November 2013 on swine farm and conservation areas near Guelph and Cambridge in Southern Ontario, Canada. Fecal samples were obtained and processed according to \@ref(fig:methodFlowchart). Data cleaning and data generation are described in \@ref(fig:methodflow2). 
+Raccoon trapping occurred during the spring and summer seasons of May 2011 to November 2013 on swine farms and conservation areas near Guelph and Cambridge in Southern Ontario, Canada. Fecal samples were obtained and processed according to Figure \@ref(fig:methodFlowchart). Data cleaning and data generation are described in Figure \@ref(fig:methodflow2). 
 
 ```{r methodFlowchart, out.width= '95%', fig.align='center', fig.cap="foo"}
 grViz("digraph flowchart {
@@ -95,7 +93,7 @@ grViz("digraph flowchart {
                  tab6 -> tab7
 }
 
-[1]: 'Isolates (n=895) sequenced on NextSeq platform. \\nGenomes assembled.'
+[1]: '895 isolates sequenced on NextSeq platform.'
 [2]: 'Genomes (614) with complete allele calls across all loci.\\nLoci (685) with complete alleles across all genomes.'
 [3]: 'Pairwise genome comparisons\\nto calculate genetic similarity\\nusing GrapeTree.'
 [4]: 'Genomes and loci with missing,\\n truncated, or short alleles discarded.'
@@ -110,18 +108,8 @@ grViz("digraph flowchart {
 
 # Results
 
-Include distance matrix 
 
-
-```{r Tree, echo=FALSE, out.width= '100%'}
-knitr::include_graphics('./images/sameCGF.png')
-
-```
-
-Tree based on cgMLST alleles. Isolates highlighted with the same colour belong to the same CGF subtype.  
-
-
-```{r distance_heatmap, out.width='80%', fig.align='center', fig.cap= "Distance Matrix"}
+```{r distance_heatmap, out.width='80%', fig.align='center', fig.cap= 'Heatmap of distance matrix for pairwise comparisons of genomes.'}
 distancemat <- as.matrix(read.csv("data/Genomes_A_DM.csv", row.names=1, header = TRUE))
 
 heatmap.2(distancemat,
@@ -141,6 +129,16 @@ heatmap.2(distancemat,
           )
 ```
 
+The heatmap shows degrees of genetic relatedness between genome pairs. Genetically similar isolates formed discrete clusters. 
+
+
+```{r Tree, echo=FALSE, out.width= '100%', fig.cap= 'Dendogram of cgMLST alleles'}
+knitr::include_graphics('./images/sameCGF.png')
+
+```
+CGF subtypes projected onto cgMLST dendogram. Isolates highlighted with the same colour belong to the same CGF subtype. In general, isolates with the same CGF subtype clustered together. 
+
+
 ```{r SimvsCluster, out.width= '80%', fig.align= 'center', fig.cap= 'Genetic Similarity vs CGF Cluster'}
 simvstime <- read.csv("data/distance_dayst.csv", header = TRUE)
 
@@ -154,8 +152,10 @@ ggplot(simvstime,
   theme_bw() +
   theme(axis.text.x = element_blank())
 
+#38 CGF clusters
+
 ```
-The average distance of genetic similarity by CGf Cluster Identity. CGF clusters had 0 allele differences, based on 40 accessory genes. Greater average distance represents greater genetic disimiarlity. Some clusters had great genetic variability whereas other clusters were genetically highly similar. Despite belonging to the same cluster, genetic similarity could be highly dissimilar, which would not be detected based on cluster data alone. 
+Average distance of genetic similarity by CGf Cluster Identity. Greater average distance represents increasing genetic disimiarlity. CGF clusters had 0 differences, based on 40 accessory genes. Some CGF clusters had great genetic variability whereas other clusters were highly similar or near identical. Despite belonging to the same CGF cluster, genetic similarity could be highly variable (6 subtypes with >50 allele differences), which would not be detected based on CGF cluster data alone. 
 
 
 ```{r SimvsTime, out.width= '80%', fig.align='center', fig.cap= 'Genetic similarity by standard deviation of the average running day for CGF clusters'}
@@ -176,14 +176,28 @@ ggplot(simvstime,
 
 ```
 
-Low average distance indicates high genetic similarity, with 0 indicating complete genomic similarity. Clusters that had a substantial number of genome pair observations that had both low average distance and standard deviations of time are considered to be outbreaks of *C. jejuni* within the raccoon population. One such example, cluster 928, which had 1560 genome pair observations, has an average distance of 0.34 and a standard deviation of 21 days. Cluster 928 was highly genetically similar while all observations occurred within a month. Other clusters with large observations that have low average distance, but high standard deviations of time are considered to be circulating within the population. WGS provides better resolution for contextualizing outbreaks vs circulating strains. 
+Average genetic distance by standard deviation of time. Low average distance indicates high genetic similarity, with 0 indicating complete genomic similarity. Low standard deviation of time indicates a smaller window of time that isolates were obtained, with 0 being the same day. CGF Clusters with a substantial number of genome pair observations that had both low average distance and standard deviations of time may be considered outbreaks of *C. jejuni* within the raccoon population. Clusters with large observations and low average distance, but high standard deviations of time are considered to be circulating within the population. 
+
+
+# Conclusion
+
+- WGS data used for cgMLST provides higher resolution for comparison of genetic similarity between isolates, providing greater context on genetic similarity compared to CGF cluster data.
+- Isolates with the same CGF subtype generally clustered together, indicating genetic similarity within subtypes. 
+- Genetic variablility of CGF clusters could be variable or highly similar. 
+- Genetic similarity can be paired with time of raccoon sampling and CGF subtype to identify potential outbreaks vs potential endemic subtypes, as an example of an analysis that can be conducted with this dataset. 
+
+
+Ultimately, this dataset will be used to develop approaches applicable to human surveillance of *Campylobacter*.
 
 # Next Steps
 
 
 
-# Conclusion
+There are many potential analyses to be conducted on this dataset. A few interesting analyses may be to: 
 
+- What constitutes a different strain, if isolates are obtained from the same animal at the same time and are genetically similar
+- Survival time of a strain within a raccoon 
+ 
 
 # Acknowledgements
 
