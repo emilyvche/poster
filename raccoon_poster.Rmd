@@ -19,7 +19,7 @@ output:
   posterdown::posterdown_html:
     self_contained: false
 bibliography: bibliography.bib
-primary_colour: rgb(128, 0 0)
+primary_colour: rgb(128, 0, 0)
 secondary_colour: rgb(255, 255, 255)
 body_bgcol: rgb(255, 255, 255)
 
