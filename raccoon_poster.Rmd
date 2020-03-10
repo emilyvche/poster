@@ -1,5 +1,5 @@
 ---
-title: Exploratory genomic analysis of *Campylobacter* in a wild Ontario raccoon population 
+title: Exploratory genomic analysis of *Campylobacter* in a wild raccoon population 
 author:
   - name: Emily V. Che
     affil: 1, 2
@@ -53,7 +53,7 @@ library(viridis)
 
 Wild raccoon trapping occurred during the spring and summer seasons of May 2011 to November 2013 on swine farms and conservation areas near Guelph and Cambridge in Southern Ontario, Canada. Fecal samples were obtained and processed according to Figure \@ref(fig:methodFlowchart). Data cleaning and data generation are described in Figure \@ref(fig:methodflow2). 
 
-```{r methodFlowchart, out.width= '95%', fig.align='center', fig.cap="foo"}
+```{r methodFlowchart, out.width= '95%', fig.align='center', fig.cap="Workflow of *Campylobacter* isolation and species confirmation"}
 grViz("digraph flowchart {
       node [fontname = Helvectica, shape = rectangle]
       tab1 [label = '@@1']
@@ -73,7 +73,7 @@ grViz("digraph flowchart {
 ```
 
 
-```{r methodflow2, out.width= '95%', fig.align='center', fig.cap= 'foo'}
+```{r methodflow2, out.width= '95%', fig.align='center', fig.cap= 'Workflow of data generation and cleaning'}
 grViz("digraph flowchart {
                  node [fontname = Helvectica, shape = rectangle,
                  fontsize = 30]
