@@ -39,7 +39,6 @@ library(viridis)
 
 *Campylobacter* is an important foodborne bacterial pathogen, affecting millions of people worldwide every year [@oh2015high]. Despite high numbers of infections, *Campylobacter* outbreaks are not well reported and metadata on outbreaks in humans is lacking [@mutschall2020campylobacter]. *Campylobacter* is capable of colonizing a wide array of animals, including farm, wild, and domestic animals, and can also be found in the environment (water and soil) [@oh2015high]. Raccoons (*Procyon lotor*) are hosts for *Campylobacter* and have a wide range of habitats (urban, rural, and natural woodland), and have the potential to move between habitats. Raccoons are therefore able to access farmland and are also able to live in close proximity to humans, and have been found to harbour *Campylobacter* strains associated with agriculture and with causing human sickness [@mutschall2020campylobacter]. Raccoons sampled in this study had more complete metadata tracked than typical human outbreaks. 
 
-
 ## Purpose
 
 Use whole genome sequencing (WGS) data with cgMLST to investigate genetic similarities between *Campylobacter* isolates from a wild raccoon population and the transmission of *Campylobacter* within raccoons. Understanding the dynamics of *Campylobacter* in wild raccoons may be used to develop a model for outbreak detection, which may be applied to humans in the future. 
@@ -135,7 +134,7 @@ knitr::include_graphics('./images/updated_tree_cgf.png')
 In general, isolates with the same CGF subtype clustered together. 
 
 
-```{r SimvsCluster, out.width= '80%', fig.align= 'center', fig.cap= 'Average Genetic Similarity vs CGF Cluster Identity. Individual bar represents a CGF cluster. Increasing average distance represents increasing genetic disimilarity. CGF cluster was based on a threshold of 0 presence/absence differences of 40 accessory genes. '}
+```{r SimvsCluster, out.width= '80%', fig.align= 'center', fig.cap= 'Average Genetic Similarity vs CGF Cluster Identity. Individual bars represents a CGF cluster. Increasing average distance represents increasing genetic disimilarity. '}
 simvstime <- read.csv("data/distance_dayst.csv", header = TRUE)
 
 ggplot(simvstime,
@@ -155,7 +154,7 @@ ggplot(simvstime,
 Some CGF clusters had great genetic variability whereas other clusters were highly similar or near identical. Despite belonging to the same CGF cluster, genetic similarity could be highly variable (6 subtypes had >50 allele differences), which would not be detected based on CGF cluster data alone. 
 
 
-```{r SimvsTime, out.width= '80%', fig.align='center', fig.cap= 'Average genetic similarity by standard deviation of the average running day for CGF clusters. Low average distance indicates high genetic similarity, with 0 indicating identical genetic similarity. Low standard deviation of time indicates a smaller window of time that  '}
+```{r SimvsTime, out.width= '80%', fig.align='center', fig.cap= 'Average genetic similarity by standard deviation of the average running day for CGF clusters. Low average distance indicates high genetic similarity. Low standard deviation of time indicates a smaller window of time'}
 simvstime <- read.csv("data/distance_dayst.csv", header = TRUE)
 
 ggplot(simvstime,
@@ -173,7 +172,7 @@ ggplot(simvstime,
 
 ```
 
-CGF clusters containing a substantial number of genomes that had both low average distance and standard deviations of time may be considered outbreaks of *C. jejuni* within the raccoon population. Clusters with both large observations and low average distance, but high standard deviations of time may represent subtypes that are circulating within the wild raccoon population. 
+CGF clusters containing a substantial number of genomes that had both low average distance and low standard deviations of time may be considered outbreaks of *C. jejuni* within the raccoon population. Clusters with both large observations and low average distance, but high standard deviations of time may represent subtypes that are circulating within the wild raccoon population. 
 
 
 # Conclusion
@@ -196,16 +195,9 @@ Ultimately, this dataset will be used to develop approaches applicable to human 
 
 # Acknowledgements
 
-Financial support for this work was provided through Genome Alberta's Applied Agricultural Genomics Program and the Canadian Wildlife Health Co-operative. 
+Funding was provided through GA3GP. 
 
-We would also like thank Dillon Barker for bioinformatics support during this project.
-
-# References
-
-Barker, Dillon OR. 2018. Thesis, University of Lethbridge.
-
-Jokinen, Cassandra C., et al. 2012. *Journal of Microbiological Methods*.
-
-Mutschall, Steven K., et al. 2020. *Frontiers in Veterinary Science*
-
-Oh, Euna, et al. 2015. *Frontiers in Microbiology*.
+Barker, Dillon OR. 2018. Thesis, University of Lethbridge.  
+Jokinen, Cassandra C., et al. 2012. *Journal of Microbiological Methods*.  
+Mutschall, Steven K., et al. 2020. *Frontiers in Veterinary Science*.  
+Oh, Euna, et al. 2015. *Frontiers in Microbiology*.  
