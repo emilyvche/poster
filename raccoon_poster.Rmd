@@ -22,6 +22,7 @@ bibliography: bibliography.bib
 primary_colour: rgb(128, 0, 0)
 secondary_colour: rgb(255, 255, 255)
 body_bgcol: rgb(255, 255, 255)
+suppress-bibliography: TRUE
 
 ---
 
@@ -36,21 +37,16 @@ library(viridis)
 
 # Background
 
-- *Campylobacter* is an important foodborne pathogen, affecting millions of people worldwide every year [@oh2015high].
--	*Campylobacter* is capable of colonizing a wide array of humans and animals, including farm animals, wild and domestic animals, and can also be found in the environment (water and soil) [@oh2015high]. 
--	Raccoons (*Procyon lotor*) have a wide range of habitats, including urban and rural areas, in addition to natural environments. 
--	Raccoons’ potential for movement between different types of habitats make them ideal subjects for investigating the role that wildlife may play in the transmission of *Campylobacter*. [@mutschall2020campylobacter]
-- Previous analyses conducted on this raccoon dataset was based on presence/absence of 40 accessory genes with Comparative Genomic Fingerprinting (CGF) [@mutschall2020campylobacter]. 
-- Core Genome Multilocus Sequence Typing (cgMLST) measures inter-genomic distance based on allelic profiles of *Campylobacter* core genome [@barker2018principles]. 
+*Campylobacter* is an important foodborne bacterial pathogen, affecting millions of people worldwide every year [@oh2015high]. Despite high numbers of infections, *Campylobacter* outbreaks are not well reported and metadata on outbreaks in humans is lacking [@mutschall2020campylobacter]. *Campylobacter* is capable of colonizing a wide array of animals, including farm, wild, and domestic animals, and can also be found in the environment (water and soil) [@oh2015high]. Raccoons (*Procyon lotor*) are hosts for *Campylobacter* and have a wide range of habitats (urban, rural, and natural woodland), and have the potential to move between habitats. Raccoons are therefore able to access farmland and are also able to live in close proximity to humans, and have been found to harbour *Campylobacter* strains associated with agriculture and with causing human sickness [@mutschall2020campylobacter]. Raccoons sampled in this study had more complete metadata tracked than typical human outbreaks. 
 
 
 ## Purpose
 
-- Use whole genome sequencing (WGS) data with cgMLST to investigate genetic similarities between *Campylobacter* isolates from a wild raccoon population. 
+Use whole genome sequencing (WGS) data with cgMLST to investigate genetic similarities between *Campylobacter* isolates from a wild raccoon population and the transmission of *Campylobacter* within raccoons. Understanding the dynamics of *Campylobacter* in wild raccoons may be used to develop a model for outbreak detection, which may be applied to humans in the future. 
 
 # Methods
 
-Wild raccoon trapping occurred during the spring and summer seasons of May 2011 to November 2013 on swine farms and conservation areas near Guelph and Cambridge in Southern Ontario, Canada. Fecal samples were obtained and processed according to Figure \@ref(fig:methodFlowchart) [@jokinen2012enhanced]. Data cleaning and data generation are described in Figure \@ref(fig:methodflow2). 
+Wild raccoon trapping occurred during the spring and summer seasons of May 2011 to November 2013 on swine farms and conservation areas near Guelph and Cambridge, Ontario. Trapped raccoons therefore represent a population of wild raccons from southern Ontario. Metadata for individual raccoons were tracked. Fecal samples were obtained and processed according to Figure \@ref(fig:methodFlowchart) [@jokinen2012enhanced]. Data cleaning and data generation are described in Figure \@ref(fig:methodflow2). Previous analyses conducted on this raccoon dataset was based on presence/absence of 40 accessory genes with Comparative Genomic Fingerprinting (CGF) PCR [@mutschall2020campylobacter]. CGF subtypes were compared with the Canadian *Campylobacter* Comparative Genomic Fingerprinting Database. Core Genome Multilocus Sequence Typing (cgMLST) measures inter-genomic distance based on allelic profiles of *Campylobacter* core genome [@barker2018principles]. 
 
 ```{r methodFlowchart, out.height = '95%', fig.align='center', fig.cap="Workflow of *Campylobacter* isolation and species confirmation"}
 grViz("digraph flowchart {
@@ -185,7 +181,7 @@ CGF clusters containing a substantial number of genomes that had both low averag
 - WGS data used for cgMLST provides higher resolution for comparison of genetic similarity between isolates, providing greater context on genetic similarity compared to CGF cluster data.
 - Isolates with the same CGF subtype generally clustered together, indicating genetic similarity within subtypes. 
 - Genetic variablility of CGF clusters could be variable or highly similar. 
-- Genetic similarity can be paired with time of raccoon sampling and CGF subtype to identify potential outbreaks vs potential endemic subtypes, as an example of an analysis that can be conducted with this dataset. 
+- Genetic similarity can be paired with the time of raccoon sampling and assigned CGF subtypes to identify potential outbreaks vs potential endemic subtypes within this raccoon population from southern Ontario, as an example of an analysis that can be conducted. 
 
 
 Ultimately, this dataset will be used to develop approaches applicable to human surveillance of *Campylobacter*.
@@ -195,6 +191,7 @@ Ultimately, this dataset will be used to develop approaches applicable to human 
 
 - Determine identical strains in the context of this dataset by determining thresholds (isolates are obtained from the same animal at the same time and are genetically similar)
 - Analyze the survival time of a strain within a raccoon to determine if the strain is transient or being harboured
+- Model transmission and outbreak detection of *Campylobacter* in raccoons and apply model to *Campylobacter* cases in humans
  
 
 # Acknowledgements
@@ -205,4 +202,10 @@ We would also like thank Dillon Barker for bioinformatics support during this pr
 
 # References
 
+Barker, Dillon OR. 2018. Thesis, University of Lethbridge.
 
+Jokinen, Cassandra C., et al. 2012. *Journal of Microbiological Methods*.
+
+Mutschall, Steven K., et al. 2020. *Frontiers in Veterinary Science*
+
+Oh, Euna, et al. 2015. *Frontiers in Microbiology*.
